@@ -18,7 +18,7 @@
         exit(0);
     }
 	
-	$server = '35.225.183.121'; // server address
+	$server = 'localhost'; // server address
 
 	// Define global variables
 	define('ROOT_URL', 'http://'.$server.'/matezone'); // App root directory

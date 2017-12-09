@@ -2,7 +2,45 @@
 
 	require_once('../config/config.php');
 
+	// Login user
+	function login($pdo, $username, $password){
 
+		$sql = 'SELECT* FROM tbl_users WHERE username = :username';
+		
+		// Prepare statement
+		if($stmt = $pdo->prepare($sql)){
+
+			 // Bind params
+			 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+			 // Attempt execute
+			 if($stmt->execute()){
+				  // Check if email exists
+				  if($stmt->rowCount() === 1){
+					if($result = $stmt->fetch()){
+						$hashed_password = $result->password;
+						if(password_verify($password, $hashed_password)){
+						  // SUCCESSFUL LOGIN
+						  // Store user data to array and convert to 
+						} else {
+						  // Display wrong password message
+						  $password_err = 'The password you entered is not valid';
+						}
+					  }
+				  }else{
+
+				  }
+
+			 }else{
+
+			 }
+
+		}else{
+
+		}
+
+
+	}
 	// Insert new user to database
 	function signUp($pdo, $data){
 
